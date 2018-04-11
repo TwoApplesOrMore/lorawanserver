@@ -1,2 +1,0 @@
-var url = "firepy.nl"
-

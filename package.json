@@ -1,0 +1,23 @@
+{
+  "name": "server-lora",
+  "version": "1.0.0",
+  "description": "lorawan server",
+  "main": "main.js",
+  "scripts": {
+    "test": "test",
+    "start": "node src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TwoApplesOrMore/lorawanserver.git"
+  },
+  "author": "TwoApplesOrMore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TwoApplesOrMore/lorawanserver/issues"
+  },
+  "homepage": "https://github.com/TwoApplesOrMore/lorawanserver#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
