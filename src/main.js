@@ -14,4 +14,8 @@ app.post("/", (req, res) => {
     res.end()
 })
 
+app.get("/", (req, res) => {
+    res.end("<!DOCTYPE html>\n<html><head><title>FirePy.nl</title></head><body>Welcome to FirePy.nl</body></html>")
+})
+
 app.listen(3000)
