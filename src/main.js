@@ -28,6 +28,7 @@ const response = {
 app.post("/send", (req, res) => {
     request.post(downlinkurl, response, (error, response, body) => {
         //fap away and do nothing
+        if(error) throw error
     })
     res.end()
 })
