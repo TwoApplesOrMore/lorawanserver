@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    $.ready(()=> {
+        $("#buttonID").click(()=>{
+            $.post("/send",{},() => {
+            }, "application/json")
+        })
+    })
+</script>
+
+<head>
+    <title>FirePy.nl</title>
+</head>
+
+<body>
+    Welcome to FirePy.nl<br>
+    <button id="buttonID">SEND</button>
+</body>
+
+</html>
