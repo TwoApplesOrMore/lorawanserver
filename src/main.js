@@ -18,8 +18,15 @@ app.post("/", (req, res) => {
     res.end("Received the POST")
 })
 
+const response = {
+    "dev_id": "lopy",
+    "port": 1,
+    "confirmed": false,
+    "payload_raw": "zKq7"
+}
+
 app.post("/send", (req, res) => {
-    request.post(downlinkurl, {"ID" : "007"}, (error, response, body) => {
+    request.post(downlinkurl, response, (error, response, body) => {
         //fap away and do nothing
     })
 })
