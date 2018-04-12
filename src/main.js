@@ -29,6 +29,7 @@ app.post("/send", (req, res) => {
     request.post(downlinkurl, response, (error, response, body) => {
         //fap away and do nothing
     })
+    res.end()
 })
 
 // app.get("/", (req, res) => {
