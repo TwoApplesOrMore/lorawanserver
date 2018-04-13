@@ -23,12 +23,20 @@ const response = {
     "dev_id": "lopy",
     "port": 1,
     "confirmed": false,
-    "payload_raw": "zKq7"
+    "payload_raw": "AQIDBA=="
 }
 
 app.post("/send", (req, res) => {
     new Promise((resolve, reject) => {
-        request.post(downlinkurl, response, (error, response, body) => {
+
+        request({
+            url: downlinkurl, 
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(response)
+        },(error, response, body) => {
             if(error) reject(error)
             resolve({
                 response, body
