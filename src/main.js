@@ -3,7 +3,7 @@ const bodyParser = require("body-parser")
 const fs = require("fs")
 const request = require("request")
 
-const standardMessage = "DBC00001000C0134000000005ACDEE6448656C6C6F210000"
+const standardMessage = "eFBUQnlwM25lRXpVdzdLTXJwOE8="
 
 const downlinkurl = "https://integrations.thethingsnetwork.org/ttn-eu/api/v2/down/team2lorawan/lorawan2?key=ttn-account-v2.TNR_kCw1V0WyaCjbZT6_n5AHv-hf9PC2KlNDB4d3f_Q"
 
