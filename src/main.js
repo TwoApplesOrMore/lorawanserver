@@ -23,7 +23,7 @@ const response = {
     "dev_id": "lopy",
     "port": 1,
     "confirmed": false,
-    "payload_raw": "AQIDBA=="
+    "payload_raw": standardMessage
 }
 
 app.post("/send", (req, res) => {
