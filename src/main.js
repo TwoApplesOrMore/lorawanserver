@@ -35,7 +35,7 @@ app.post("/send", (req, res) => {
             })
         })
     }).then(result => {
-        res.end(result.body)
+        res.end(JSON.stringify(result))
     })
 })
 
