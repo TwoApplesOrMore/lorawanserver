@@ -61,10 +61,12 @@ app.post("/send", (req, res) => {
 
 app.get("/raws", (req, res) => {
     fs.readFile("../log.txt", "utf8", (err, data) => {
-        if (err.code === "ENOENT") {
-            res.status(204).json([]);
-        } else {
-            throw err;
+        if(err) {
+            if (err.code === "ENOENT") {
+                res.status(204).json([]);
+            } else {
+                throw err;
+            }
         }
         res.json({
             log: data.split("\n")
