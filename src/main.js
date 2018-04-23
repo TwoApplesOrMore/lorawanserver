@@ -60,15 +60,17 @@ app.post("/send", (req, res) => {
 })
 
 app.get("/raws", async (req, res) => {
-    const logExists = await fs.exists("../log.txt")
-    if (!logExists) {
-        res.status(204).json([]);
-    } else {
-        const logFile = await fs.readFile("../log.txt")
-        const log = logFile.split("\n")
+    const logExists = await fs.stat("../log.txt")
+    fs.readFile("../log.txt", "utf8", (err, data) => {
+        if (err.code === "ENOENT") {
+            res.status(204).json([]);
+        } else {
+            throw err;
+        }
         res.json({
-            log
+            log: data.split("\n")
         })
-    }
+    })
 })
+
 app.listen(3000)
