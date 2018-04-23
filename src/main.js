@@ -26,30 +26,32 @@ app.use(express.static("../public"))
 // TODO: Implement broker. For now, log it into a file
 app.post("/", (req, res) => {
     const payload = req.body.payload_raw
-    fs.appendFile("../log.txt", payload + "\n", err => {
-        if(err) throw err
-    })
-    //send it on to other servers.
-    res.end("Received the POST")
+    if (payload === "AA==") {
+        fs.appendFile("../log.txt", payload + "\n", err => {
+            if (err) throw err
+        })
+        //send it on to other servers.
+        res.end("Received the POST")
+    }
 })
 
 // send function to send mock-message to LoPy. Can be changed slightly to send actual messages, 
 // one the broker has been implemented.
 app.post("/send", (req, res) => {
     new Promise((resolve, reject) => {
-
         // use the request library to send the message to LoPy
         request({
-            url: downlinkurl, 
+            url: downlinkurl,
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(response)
-        },(error, response, body) => {
-            if(error) reject(error)
+        }, (error, response, body) => {
+            if (error) reject(error)
             resolve({
-                response, body
+                response,
+                body
             })
         })
     }).then(result => {
@@ -58,8 +60,8 @@ app.post("/send", (req, res) => {
 })
 
 app.get("/raws", async (req, res) => {
-    const logExists = await fs.exists()
-    if(!logExists) {
+    const logExists = await fs.exists("../log.txt")
+    if (!logExists) {
         res.status(204).json([]);
     } else {
         const logFile = await fs.readFile("../log.txt")
