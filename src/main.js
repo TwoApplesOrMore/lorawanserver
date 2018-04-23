@@ -1,6 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const fs = require("fs")
+const fs = require("fs-extra")
 const request = require("request")
 
 // mock base64-compliant message to send back, when testing.
@@ -25,7 +25,8 @@ app.use(express.static("../public"))
 // Method to send the message received from LoPy to other countries
 // TODO: Implement broker. For now, log it into a file
 app.post("/", (req, res) => {
-    fs.appendFile("log.txt", JSON.stringify(req.body), err => {
+    const payload = req.body.payload_raw
+    fs.appendFile("../log.txt", payload + "\n", err => {
         if(err) throw err
     })
     //send it on to other servers.
@@ -54,5 +55,18 @@ app.post("/send", (req, res) => {
     }).then(result => {
         res.end(JSON.stringify(result))
     })
+})
+
+app.get("/raws", async (req, res) => {
+    const logExists = await fs.exists()
+    if(!logExists) {
+        res.status(204).json([]);
+    } else {
+        const logFile = await fs.readFile("../log.txt")
+        const log = logFile.split("\n")
+        res.json({
+            log
+        })
+    }
 })
 app.listen(3000)
