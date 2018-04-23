@@ -68,9 +68,13 @@ app.get("/raws", (req, res) => {
                 throw err;
             }
         }
-        res.json({
-            log: data.split("\n")
-        })
+        if(!data) {
+            res.status(204).json([]);
+        } else {
+            res.json({
+                log: data.split("\n")
+            })
+        }
     })
 })
 
