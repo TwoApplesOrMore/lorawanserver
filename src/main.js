@@ -26,7 +26,7 @@ app.use(express.static("../public"))
 // TODO: Implement broker. For now, log it into a file
 app.post("/", (req, res) => {
     const payload = req.body.payload_raw
-    if (payload === "AA==") {
+    if (payload !== "AA==") {
         fs.appendFile("../log.txt", payload + "\n", err => {
             if (err) throw err
         })
