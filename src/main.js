@@ -1,6 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const fs = require("fs-extra")
+const fs = require("fs")
 const request = require("request")
 
 // mock base64-compliant message to send back, when testing.
@@ -59,8 +59,7 @@ app.post("/send", (req, res) => {
     })
 })
 
-app.get("/raws", async (req, res) => {
-    const logExists = await fs.stat("../log.txt")
+app.get("/raws", (req, res) => {
     fs.readFile("../log.txt", "utf8", (err, data) => {
         if (err.code === "ENOENT") {
             res.status(204).json([]);
